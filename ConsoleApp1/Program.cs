@@ -8,24 +8,24 @@ using System.Text.RegularExpressions;
 
 #region Words with most unique letters
 
-class Program
-{
-    static void Main()
-    {
-        List<string> words = new List<string> { "apple", "banana", "cherry", "strawberry", "blueberry", "kiwi", "equalizer", "boarding" };
+//class Program
+//{
+//    static void Main()
+//    {
+//        List<string> words = new List<string> { "apple", "banana", "cherry", "strawberry", "blueberry", "kiwi", "equalizer", "boarding" };
 
-        var sortedWords = words
-            .Select(word => new { Word = word, UniqueCount = word.ToHashSet().Count })
-            .OrderByDescending(x => x.UniqueCount)
-            .ThenBy(x => x.Word)
-            .ToList();
+//        var sortedWords = words
+//            .Select(word => new { Word = word, UniqueCount = word.ToHashSet().Count })
+//            .OrderByDescending(x => x.UniqueCount)
+//            .ThenBy(x => x.Word)
+//            .ToList();
 
-        var topEntry = sortedWords.First();
+//        var topEntry = sortedWords.First();
 
-        Console.WriteLine("Word with the most unique letters (sorted lexicographically) and its unique letter count:");
-        Console.WriteLine($"{topEntry.Word}: {topEntry.UniqueCount}");
-    }
-}
+//        Console.WriteLine("Word with the most unique letters (sorted lexicographically) and its unique letter count:");
+//        Console.WriteLine($"{topEntry.Word}: {topEntry.UniqueCount}");
+//    }
+//}
 #endregion
 
 #region Optimal Priority Sequence
