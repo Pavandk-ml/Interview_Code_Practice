@@ -2,6 +2,7 @@
 
 
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -222,5 +223,57 @@ using System.Text.RegularExpressions;
 //        Console.WriteLine(result);
 //    }
 //}
+#endregion
+
+#region Valid Paranthesis 
+public class Solution
+{
+    public bool IsValid(string s)
+    {
+        Stack<char> stackchar = new Stack<char>();
+        Dictionary<char, char> DictChar = new Dictionary<char, char>(){
+                {')','('},
+                {']','['},
+                {'}','{'}
+        };
+
+        foreach (char a in s)
+        {
+            if (DictChar.ContainsKey(a))
+            {
+                var TopElement = stackchar.Count > 0 ? stackchar.Pop() : '#';
+                if (TopElement == DictChar[a])
+                {
+                    continue;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            else
+            {
+                stackchar.Push(a);
+            }
+
+
+
+        }
+        return stackchar.Count == 0;
+
+
+    }
+
+    static void Main(string[] args)
+    {
+        Solution s = new Solution();
+         var result = s.IsValid("(){}}{");
+        //string sa = " hello new world ";
+        
+        //Console.WriteLine(sa.Trim().Split(' ').Last().Length);
+        Console.WriteLine(result);
+    }
+}
 #endregion
 
