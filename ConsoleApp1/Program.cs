@@ -226,54 +226,120 @@ using System.Text.RegularExpressions;
 #endregion
 
 #region Valid Paranthesis 
+//public class Solution
+//{
+//    public bool IsValid(string s)
+//    {
+//        Stack<char> stackchar = new Stack<char>();
+//        Dictionary<char, char> DictChar = new Dictionary<char, char>(){
+//                {')','('},
+//                {']','['},
+//                {'}','{'}
+//        };
+
+//        foreach (char a in s)
+//        {
+//            if (DictChar.ContainsKey(a))
+//            {
+//                var TopElement = stackchar.Count > 0 ? stackchar.Pop() : '#';
+//                if (TopElement == DictChar[a])
+//                {
+//                    continue;
+//                }
+//                else
+//                {
+//                    return false;
+//                }
+
+//            }
+//            else
+//            {
+//                stackchar.Push(a);
+//            }
+
+
+
+//        }
+//        return stackchar.Count == 0;
+
+
+//    }
+
+//    static void Main(string[] args)
+//    {
+//        Solution s = new Solution();
+//         var result = s.IsValid("(){}}{");
+//        //string sa = " hello new world ";
+
+//        //Console.WriteLine(sa.Trim().Split(' ').Last().Length);
+//        Console.WriteLine(result);
+//    }
+//}
+#endregion
+
+#region  Merge two sorted List
+
+ public class ListNode
+{
+      public int val;
+      public ListNode next;
+     public ListNode(int val = 0, ListNode next = null)
+    {
+        this.val = val;
+        this.next = next;
+            }
+  }
+
 public class Solution
 {
-    public bool IsValid(string s)
+    public ListNode MergeTwoLists(ListNode list1, ListNode list2)
     {
-        Stack<char> stackchar = new Stack<char>();
-        Dictionary<char, char> DictChar = new Dictionary<char, char>(){
-                {')','('},
-                {']','['},
-                {'}','{'}
-        };
+        ListNode dummy = new ListNode();
+        ListNode current = dummy;
 
-        foreach (char a in s)
+        while (list1 != null && list2 != null)
         {
-            if (DictChar.ContainsKey(a))
+            if (list1.val <= list2.val)
             {
-                var TopElement = stackchar.Count > 0 ? stackchar.Pop() : '#';
-                if (TopElement == DictChar[a])
-                {
-                    continue;
-                }
-                else
-                {
-                    return false;
-                }
-
+                current = current.next = new ListNode();
+                current.val = list1.val;
+                list1 = list1.next;
             }
             else
             {
-                stackchar.Push(a);
+                current = current.next = new ListNode();
+                current.val = list2.val;
+                list2 = list2.next;
             }
-
-
-
+            current.next = new ListNode();
+            //current = current.next;
         }
-        return stackchar.Count == 0;
 
+        if (list1 == null)
+        {
+            current.next = list2;
+        }
+        if (list2 == null)
+        {
+            current.next = list1;
+        }
+
+        return dummy.next;
 
     }
 
     static void Main(string[] args)
     {
+        ListNode list1 = new ListNode(1, new ListNode(3, new ListNode(5)));
+        ListNode list2 = new ListNode(2, new ListNode(4, new ListNode(6)));
         Solution s = new Solution();
-         var result = s.IsValid("(){}}{");
+        var result = s.MergeTwoLists(list1, list2);
         //string sa = " hello new world ";
-        
+
         //Console.WriteLine(sa.Trim().Split(' ').Last().Length);
         Console.WriteLine(result);
     }
 }
-#endregion
 
+
+#endregion
